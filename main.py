@@ -9,7 +9,7 @@ preg_deporte = [[1, "pregunta?", "opcion1", "opcion2", "opcion3"],
                 [2, "pregunta?", "opcion1", "opcion2", "opcion3"]]
 preg_ciencia = [[1, "pregunta?", "opcion1", "opcion2", "opcion3"],
                 [2, "pregunta?", "opcion1", "opcion2", "opcion3"]]
-preg_arte = [[1, "pregunta?", "opcion1", "opcion2", "opcion3"],
+preg_arte = [[1, "pregunta?,", "opcion1", "opcion2", "opcion3"],
              [2, "pregunta?", "opcion1", "opcion2", "opcion3"]]
 preg_geografia = [[1, "pregunta?", "opcion1", "opcion2", "opcion3"],
                   [2, "pregunta?", "opcion1", "opcion2", "opcion3"]]
@@ -72,25 +72,24 @@ def eleccion_preguntas(tematica):
 def ejecucion_juego():
     puntos = 0
     tematica = 0
-    
+
     while tematica != -1:
-    
+
         tematica = eleccion_tematica()
         pregunta = eleccion_preguntas(tematica)
-        
-        for i in range(len(pregunta-1)):
+
+        for i in range(len(pregunta)-1):
             print(pregunta[i])
-        
-        opcion_elegida = int(input("Ingrese su respuesta: "))
-        
+
+        opcion_elegida = int(input("Ingrese su respuesta: hola "))
+
         if opcion_elegida == pregunta[4]:
-            print("Respuesta correcta")
+            print("Respuesta correcta, Felicitaciones!!")
             puntos += 10
-        else: 
+        else:
             print("Respuesta incorrecta")
-        
+
         tematica = eleccion_tematica()
 
+
 print("Respuestas correctas y puntos")
-    
-    
