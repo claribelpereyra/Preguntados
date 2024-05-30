@@ -41,6 +41,17 @@ def imprimir_pregunta(pregunta):
         print(pregunta[i])
 
 
+def imprimir_resultado(vidas, tematicas, puntos):
+    if vidas > 0 and len(tematicas) == 0:
+        print("GANASTE!!!")
+        print("Respuestas correctas y puntos, ", puntos)
+    elif vidas > 0 and len(tematicas) > 0:
+        print("ABANDONASTE")
+
+    elif vidas == 0 and len(tematicas) > 0:
+        print("PERDISTE.")
+
+
 def eleccion_preguntas(tematica):
     nro_preg = random.randint(0, 1)
 
@@ -97,7 +108,6 @@ def main():
     while tematica != "FIN" and vidas > 0:
 
         imprimir_tematicas(tematicas)
-
         tematica_elegida = input("Ingrese la opcion elegida: ")
         validacion = validar_input(tematica_elegida)
 
@@ -105,6 +115,7 @@ def main():
             print("La opcion ingresada es incorrecta.")
             tematica_elegida = input("Ingrese la opcion elegida: ")
             validacion = validar_input(tematica_elegida)
+
         tematica = eleccion_tematica(tematica_elegida)
         if tematica != "FIN":
             pregunta = eleccion_preguntas(tematica)
@@ -136,14 +147,7 @@ def main():
         if len(tematicas) == 0 and vidas == 0:
             tematica = "FIN"
 
-    if vidas > 0 and len(tematicas) == 0:
-        print("GANASTE!!!")
-        print("Respuestas correctas y puntos, ", puntos)
-    elif vidas > 0 and len(tematicas) > 0:
-        print("ABANDONASTE")
-
-    elif vidas == 0 and len(tematicas) > 0:
-        print("PERDISTE.")
+    imprimir_resultado(vidas, tematicas, puntos)
 
 
 main()
