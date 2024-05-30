@@ -2,25 +2,43 @@ import random
 
 ######### CONSTANTES ##################
 tematicas = ["HISTORIA", "DEPORTE", "CIENCIA", "ARTE", "GEOGRAFIA", "ENTRETENIMIENTO"]
+inputs_validos = ["FIN", '1', '2', '3', '4', '5', '6']
 
 
 ###########  FUNCIONES ###########
 
-def eleccion_tematica():
+def eleccion_tematica(opcion_elegida):
     # TODO: Validaciones de input
-    print("Bienvenido al preguntados, estas son las categorias disponibles: ")
-    for i in range(len(tematicas)):
-        print(i + 1, " - ", tematicas[i])
-    print("O ingrese FIN para salir del juego. ")
-    # Aca tambien puede elegir si terminar el juego o no
-    opcion_elegida = input("Ingrese la opcion elegida: ")
 
     if opcion_elegida != "FIN":
         tematica = tematicas[int(opcion_elegida) - 1]
         del tematicas[int(opcion_elegida) - 1]
+        del inputs_validos[-1]
     else:
         tematica = opcion_elegida
     return tematica
+
+
+def validar_input(input):
+    es_valido = False
+    cant_validaciones = 0
+    while es_valido is False and cant_validaciones < len(inputs_validos):
+        for i in range(len(inputs_validos)):
+            if str(input) == inputs_validos[i]:
+                es_valido = True
+            cant_validaciones += 1
+    return es_valido
+
+
+def imprimir_tematicas(tematicas):
+    for i in range(len(tematicas)):
+        print(i + 1, " - ", tematicas[i])
+    print("O ingrese FIN para salir del juego. ")
+
+
+def imprimir_pregunta(pregunta):
+    for i in range(len(pregunta) - 1):
+        print(pregunta[i])
 
 
 def eleccion_preguntas(tematica):
@@ -65,42 +83,57 @@ def eleccion_preguntas(tematica):
     return pregunta
 
 
-def ejecucion_juego():
+def main():
     puntos = 0
     vidas = 5
-    tematica = eleccion_tematica()
+    tematica = ""
+
+    print(r" ____  ____  _____ ____ _   _ _   _ _____  _    ____   ___  ____")
+    print(r"|  _ \|  _ \| ____/ ___| | | | \ | |_   _|/ \  |  _ \ / _ \/ ___|")
+    print(r"| |_) | |_) |  _|| |  _| | | |  \| | | | / _ \ | | | | | | \___ \ ")
+    print(r"|  __/|  _ <| |__| |_| | |_| | |\  | | |/ ___ \| |_| | |_| |___) |")
+    print(r"|_|   |_| \_\_____\____|\___/|_| \_| |_/_/   \_\____/ \___/|____/ ")
 
     while tematica != "FIN" and vidas > 0:
-        pregunta = eleccion_preguntas(tematica)
 
-        for i in range(len(pregunta) - 1):
-            print(pregunta[i])
+        imprimir_tematicas(tematicas)
 
-        opcion_elegida = int(input("Ingrese su respuesta: "))
+        tematica_elegida = input("Ingrese la opcion elegida: ")
+        validacion = validar_input(tematica_elegida)
 
-        if opcion_elegida == pregunta[4]:
-            print("Respuesta correcta")
-            puntos += 10
-        else:
-            print("Respuesta incorrecta")
-            while (opcion_elegida != pregunta[4]) and vidas > 0:
-                vidas -= 1
-                print("Te quedan ", vidas, "vidas.")
+        while validacion is False:
+            print("La opcion ingresada es incorrecta.")
+            tematica_elegida = input("Ingrese la opcion elegida: ")
+            validacion = validar_input(tematica_elegida)
+        tematica = eleccion_tematica(tematica_elegida)
+        if tematica != "FIN":
+            pregunta = eleccion_preguntas(tematica)
 
-                if vidas > 0:
-                    pregunta = eleccion_preguntas(tematica)
+            imprimir_pregunta(pregunta)
 
-                    for i in range(len(pregunta) - 1):
-                        print(pregunta[i])
+            opcion_elegida = int(input("Ingrese su respuesta: "))
 
-                    opcion_elegida = int(input("Ingrese su respuesta: "))
+            if opcion_elegida == pregunta[4]:
+                print("Respuesta correcta")
+                puntos += 10
+            else:
+                print("Respuesta incorrecta")
 
-                    if opcion_elegida == pregunta[4]:
-                        print("Respuesta correcta")
-                        puntos += 5
-        if len(tematicas) > 0 and vidas > 0:
-            tematica = eleccion_tematica()
-        else:
+                while (opcion_elegida != pregunta[4]) and vidas > 0:
+                    vidas -= 1
+                    print("Te quedan ", vidas, "vidas.")
+
+                    if vidas > 0:
+                        pregunta = eleccion_preguntas(tematica)
+
+                        imprimir_pregunta(pregunta)
+
+                        opcion_elegida = int(input("Ingrese su respuesta: "))
+
+                        if opcion_elegida == pregunta[4]:
+                            print("Respuesta correcta")
+                            puntos += 5
+        if len(tematicas) == 0 and vidas == 0:
             tematica = "FIN"
 
     if vidas > 0 and len(tematicas) == 0:
@@ -113,4 +146,4 @@ def ejecucion_juego():
         print("PERDISTE.")
 
 
-ejecucion_juego()
+main()
