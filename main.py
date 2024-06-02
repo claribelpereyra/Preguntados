@@ -1,85 +1,126 @@
 import random
 
-######### CONSTANTES ##################
-tematicas = ["HISTORIA", "DEPORTE", "CIENCIA", "ARTE", "GEOGRAFIA", "ENTRETENIMIENTO"]
-inputs_validos = ["FIN", '1', '2', '3', '4', '5', '6']
+# CONSTANTES
+categorias = ["HISTORIA", "DEPORTE", "CIENCIA", "ARTE", "GEOGRAFIA", "ENTRETENIMIENTO"]
+inputs_validos_categorias = ["FIN", '1', '2', '3', '4', '5', '6']
 
 
-###########  FUNCIONES ###########
+# FUNCIONES
 
-def eleccion_tematica(opcion_elegida):
-    # TODO: Validaciones de input
+def eleccion_categoria(categoria_elegida):
+    """ Devuelve la categoria correspondiente a la opción ingresada.
+    :param categoria_elegida: Str, valor correspondiente a la categoria elegida. Tiene que ser "FIN" o un número entre 1
+                              y el largo de la lista categorias.
+    :return tematica: Str, categoria válida."""
 
-    if opcion_elegida != "FIN":
-        tematica = tematicas[int(opcion_elegida) - 1]
-        del tematicas[int(opcion_elegida) - 1]
-        del inputs_validos[-1]
+    if categoria_elegida != "FIN":
+        # Buscamos la categoria correspondiente al numero ingresado, como las opciones van de 1 al largo de la lista
+        # para tener el indice correcto vamos a restarle una a la opcion ingresada.
+        tematica = categorias[int(categoria_elegida) - 1]
+        # Borramos la categoria elegida para que ya no sea una opción para el usuario.
+        del categorias[int(categoria_elegida) - 1]
+        # Borramos el ultimo elemento de la lista de inputs validos, ya que va a tener una opcion menos disponible
+        # para ingresar.
+        del inputs_validos_categorias[-1]
     else:
-        tematica = opcion_elegida
+        tematica = categoria_elegida
     return tematica
 
 
-def validar_input(input):
+def validar_input(dato_ingresado):
+    """Valida que el input ingresado para las categorias este en el rango correcto de opciones disponibles.
+    :param dato_ingresado: Str, valor ingresado por teclado del usuario.
+    :return es_valido: Bool, devuelve True si es un input valido o False en caso contrario."""
+
     es_valido = False
-    cant_validaciones = 0
-    while es_valido is False and cant_validaciones < len(inputs_validos):
-        for i in range(len(inputs_validos)):
-            if str(input) == inputs_validos[i]:
-                es_valido = True
-            cant_validaciones += 1
+    i = 0
+    # Mientras el input no sea valido y todavia queden elementos en la lista de inputs_validos_categorias para comparar,
+    # se comparara el dato ingresado con los valores esperados.
+    while es_valido is False and i < len(inputs_validos_categorias):
+        # Si el dato ingresado es igual a alguno de los datos que en la lista inputs_validos_categorias cambia el valor
+        # de es_valido a True.
+        if dato_ingresado == inputs_validos_categorias[i]:
+            es_valido = True
+        i += 1
     return es_valido
 
 
-def imprimir_tematicas(tematicas):
-    for i in range(len(tematicas)):
-        print(i + 1, " - ", tematicas[i])
-    print("O ingrese FIN para salir del juego. ")
+def imprimir_categorias():
+    """ Muestra por pantalla las categorias disponibles que tiene el usuario para elegir. """
+    print("Elegi alguna de las categorias disponibles o ingresa FIN para salir del juego: ")
+    for i in range(len(categorias)):
+        print(i + 1, " - ", categorias[i])
 
 
 def imprimir_pregunta(pregunta):
+    """ Muestra por pantalla la pregunta y las opciones disponibles que tiene el usuario para elegir.
+    :param pregunta: List, lista de cinco elementos."""
+
+    # Imprime hasta el anteúltimo elemento, ya que el último indica la opcion
+    # correcta contra la que validamos el resultado.
     for i in range(len(pregunta) - 1):
         print(pregunta[i])
 
 
 def imprimir_resultado(vidas, tematicas, puntos):
+    """ Muestra por pantalla el resultado del juego segun la cantidad disponible de categorias y vidas. """
     if vidas > 0 and len(tematicas) == 0:
-        print("GANASTE!!!")
-        print("Respuestas correctas y puntos, ", puntos)
+        print("██████╗  █████╗ ███╗   ██╗ █████╗ ███████╗████████╗███████╗")
+        print("██╔════╝ ██╔══██╗████╗  ██║██╔══██╗██╔════╝╚══██╔══╝██╔════╝")
+        print("██║  ███╗███████║██╔██╗ ██║███████║███████╗   ██║   █████╗")
+        print("██║   ██║██╔══██║██║╚██╗██║██╔══██║╚════██║   ██║   ██╔══╝")
+        print("╚██████╔╝██║  ██║██║ ╚████║██║  ██║███████║   ██║   ███████╗")
+        print("╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚══════╝")
+
+        print("Vos si que sos más argentino que #completar ahre")
+
+        print("Sumaste en total: ", puntos, "puntos.")
     elif vidas > 0 and len(tematicas) > 0:
-        print("ABANDONASTE")
+        print("█████╗ ██████╗  █████╗ ███╗   ██╗██████╗  ██████╗ ███╗   ██╗ █████╗ ███████╗████████╗███████╗")
+        print("██╔══██╗██╔══██╗██╔══██╗████╗  ██║██╔══██╗██╔═══██╗████╗  ██║██╔══██╗██╔════╝╚══██╔══╝██╔════╝")
+        print("███████║██████╔╝███████║██╔██╗ ██║██║  ██║██║   ██║██╔██╗ ██║███████║███████╗   ██║   █████╗")
+        print("██╔══██║██╔══██╗██╔══██║██║╚██╗██║██║  ██║██║   ██║██║╚██╗██║██╔══██║╚════██║   ██║   ██╔══╝")
+        print("██║  ██║██████╔╝██║  ██║██║ ╚████║██████╔╝╚██████╔╝██║ ╚████║██║  ██║███████║   ██║   ███████╗")
+        print("╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝  ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚══════╝")
+
+        print("Que pecho frio, anda a estudiar y volve!")
 
     elif vidas == 0 and len(tematicas) > 0:
-        print("PERDISTE.")
+        print("PERDISTE y por eso ni un banner te hacemos ¯\_(ツ)_/¯ ")
 
 
-def eleccion_preguntas(tematica):
+def eleccion_preguntas(categoria):
+    """Según la categoria ingresada devuelve una pregunta elegida de manera random.
+    :param categoria: Str, nombre de la categoria elegida.
+    :return pregunta: List, lista con la pregunta, las opciones disponibles y la opcion correcta."""
+
     nro_preg = random.randint(0, 1)
 
-    if tematica == 'HISTORIA':
+    if categoria == 'HISTORIA':
         if nro_preg == 0:
             pregunta = ["pregunta historia 1?", "opcion1", "opcion2", "opcion3", 1]
         elif nro_preg == 1:
             pregunta = ["pregunta historia 2?", "opcion1", "opcion2", "opcion3", 1]
 
-    elif tematica == "DEPORTE":
+    elif categoria == "DEPORTE":
         if nro_preg == 0:
             pregunta = ["pregunta deporte 1?", "opcion1", "opcion2", "opcion3", 1]
         elif nro_preg == 1:
             pregunta = ["pregunta deporte 2?", "opcion1", "opcion2", "opcion3", 1]
 
-    elif tematica == "CIENCIA":
+    elif categoria == "CIENCIA":
         if nro_preg == 0:
             pregunta = ["pregunta ciencia 1?", "opcion1", "opcion2", "opcion3", 1]
         elif nro_preg == 1:
             pregunta = ["pregunta ciencia 2?", "opcion1", "opcion2", "opcion3", 1]
 
-    elif tematica == "ARTE":
+    elif categoria == "ARTE":
         if nro_preg == 0:
             pregunta = ["pregunta arte 1?", "opcion1", "opcion2", "opcion3", 1]
         elif nro_preg == 1:
             pregunta = ["pregunta arte 2?", "opcion1", "opcion2", "opcion3", 1]
 
-    elif tematica == "GEOGRAFIA":
+    elif categoria == "GEOGRAFIA":
         if nro_preg == 0:
             pregunta = ["pregunta geografia 1?", "opcion1", "opcion2", "opcion3", 1]
         elif nro_preg == 1:
@@ -95,28 +136,46 @@ def eleccion_preguntas(tematica):
 
 
 def main():
+    """Función encargada de la ejecución del juego."""
+
     puntos = 0
     vidas = 5
     tematica = ""
 
-    print(r" ____  ____  _____ ____ _   _ _   _ _____  _    ____   ___  ____")
-    print(r"|  _ \|  _ \| ____/ ___| | | | \ | |_   _|/ \  |  _ \ / _ \/ ___|")
-    print(r"| |_) | |_) |  _|| |  _| | | |  \| | | | / _ \ | | | | | | \___ \ ")
-    print(r"|  __/|  _ <| |__| |_| | |_| | |\  | | |/ ___ \| |_| | |_| |___) |")
-    print(r"|_|   |_| \_\_____\____|\___/|_| \_| |_/_/   \_\____/ \___/|____/ ")
+    print(
+        "██████╗ ██╗███████╗███╗   ██╗██╗   ██╗███████╗███╗   ██╗██╗██████╗  ██████╗      █████╗ ██╗          █████╗ ██████╗  ██████╗ ███████╗███╗   ██╗████████╗ █████╗ ██████╗  ██████╗ ███████╗    ██╗")
+    print(
+        "██╔══██╗██║██╔════╝████╗  ██║██║   ██║██╔════╝████╗  ██║██║██╔══██╗██╔═══██╗    ██╔══██╗██║         ██╔══██╗██╔══██╗██╔════╝ ██╔════╝████╗  ██║╚══██╔══╝██╔══██╗██╔══██╗██╔═══██╗██╔════╝    ██║")
+    print(
+        "██████╔╝██║█████╗  ██╔██╗ ██║██║   ██║█████╗  ██╔██╗ ██║██║██║  ██║██║   ██║    ███████║██║         ███████║██████╔╝██║  ███╗█████╗  ██╔██╗ ██║   ██║   ███████║██║  ██║██║   ██║███████╗    ██║")
+    print(
+        "██╔══██╗██║██╔══╝  ██║╚██╗██║╚██╗ ██╔╝██╔══╝  ██║╚██╗██║██║██║  ██║██║   ██║    ██╔══██║██║         ██╔══██║██╔══██╗██║   ██║██╔══╝  ██║╚██╗██║   ██║   ██╔══██║██║  ██║██║   ██║╚════██║    ╚═╝")
+    print(
+        "██████╔╝██║███████╗██║ ╚████║ ╚████╔╝ ███████╗██║ ╚████║██║██████╔╝╚██████╔╝    ██║  ██║███████╗    ██║  ██║██║  ██║╚██████╔╝███████╗██║ ╚████║   ██║   ██║  ██║██████╔╝╚██████╔╝███████║    ██╗")
+    print(
+        "╚═════╝ ╚═╝╚══════╝╚═╝  ╚═══╝  ╚═══╝  ╚══════╝╚═╝  ╚═══╝╚═╝╚═════╝  ╚═════╝     ╚═╝  ╚═╝╚══════╝    ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚═╝  ╚═╝╚═════╝  ╚═════╝ ╚══════╝    ╚═╝")
+    print(" A continuacion te explicamos las reglas: ")
+    print(
+        "* Vas a tener seis categorias en las cuales vas a encontrar preguntas relacionadas a nuestro país, para ganar vas a tener que contestar al menos una bien en cada categoria.")
+    print("* Las condiciones son: - Tenes 5 vidas en total y solo podes elegir cada categoria una vez.")
+    print("                       - Una vez que elegiste una categoria no la podes cambiar.")
+    print(
+        "                       - Cada pregunta correcta suma 10 puntos, si es tu segundo intento o posterior suma 5. ")
 
-    while tematica != "FIN" and vidas > 0:
+    input("Para continuar presiona cualquier tecla: ")
 
-        imprimir_tematicas(tematicas)
-        tematica_elegida = input("Ingrese la opcion elegida: ")
-        validacion = validar_input(tematica_elegida)
+    while tematica != "FIN" and vidas > 0 and len(categorias) > 0:
+
+        imprimir_categorias()
+        categoria_elegida = input("Ingrese la opcion elegida: ")
+        validacion = validar_input(categoria_elegida)
 
         while validacion is False:
-            print("La opcion ingresada es incorrecta.")
-            tematica_elegida = input("Ingrese la opcion elegida: ")
-            validacion = validar_input(tematica_elegida)
+            print("Che, dale, elegime una opcion valida!")
+            categoria_elegida = input("Ingrese la opcion elegida: ")
+            validacion = validar_input(categoria_elegida)
 
-        tematica = eleccion_tematica(tematica_elegida)
+        tematica = eleccion_categoria(categoria_elegida)
         if tematica != "FIN":
             pregunta = eleccion_preguntas(tematica)
 
@@ -125,16 +184,17 @@ def main():
             opcion_elegida = int(input("Ingrese su respuesta: "))
 
             if opcion_elegida == pregunta[4]:
-                print("Respuesta correcta")
+                print("Le pegaste! Felicitaciones, sumaste 10 puntos ٩( ๑╹ ꇴ╹)۶")
                 puntos += 10
             else:
-                print("Respuesta incorrecta")
+                print("Te equivocaste pichón ಠ_ಠ")
 
                 while (opcion_elegida != pregunta[4]) and vidas > 0:
                     vidas -= 1
-                    print("Te quedan ", vidas, "vidas.")
 
                     if vidas > 0:
+                        print("Pero igual te quedan ", vidas, "vidas. Asi que podes volver a intentar con otra "
+                                                              "pregunta!")
                         pregunta = eleccion_preguntas(tematica)
 
                         imprimir_pregunta(pregunta)
@@ -142,12 +202,14 @@ def main():
                         opcion_elegida = int(input("Ingrese su respuesta: "))
 
                         if opcion_elegida == pregunta[4]:
-                            print("Respuesta correcta")
+                            print("Hasta que adivinaste!, ahora sumas 5 puntos.")
                             puntos += 5
-        if len(tematicas) == 0 and vidas == 0:
+                    else:
+                        print("Te quedaste sin vidas, que mala leche!")
+        if len(categorias) == 0 and vidas == 0:
             tematica = "FIN"
 
-    imprimir_resultado(vidas, tematicas, puntos)
+    imprimir_resultado(vidas, categorias, puntos)
 
 
 main()
