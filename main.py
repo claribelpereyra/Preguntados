@@ -32,6 +32,8 @@ def imprimir_dificultades(dificultad):
 def validarDificultad(eleccion):
     return eleccion in inputs_validosDificultad
 
+# FUNCIONES
+
 def eleccion_categoria(categoria_elegida):
     """ Devuelve la categoria correspondiente a la opción ingresada.
     :param categoria_elegida: Str, valor correspondiente a la categoria elegida. Tiene que ser "FIN" o un número entre 1
@@ -235,6 +237,34 @@ def main():
 
                     while (opcion_elegida != pregunta[4]) and vidas > 0:
                         vidas -= 1
+
+                    while tematica != "FIN" and vidas > 0 and len(categorias) > 0:
+
+                        imprimir_categorias()
+        categoria_elegida = input("Ingrese la opcion elegida: ")
+        validacion = validar_input(categoria_elegida)
+
+        while validacion is False:
+            print("Che, dale, elegime una opcion valida!")
+            categoria_elegida = input("Ingrese la opcion elegida: ")
+            validacion = validar_input(categoria_elegida)
+
+        tematica = eleccion_categoria(categoria_elegida)
+        if tematica != "FIN":
+            pregunta = eleccion_preguntas(tematica)
+
+            imprimir_pregunta(pregunta)
+
+            opcion_elegida = int(input("Ingrese su respuesta: "))
+
+            if opcion_elegida == pregunta[4]:
+                print("Le pegaste! Felicitaciones, sumaste 10 puntos ٩( ๑╹ ꇴ╹)۶")
+                puntos += 10
+            else:
+                print("Te equivocaste pichón ಠ_ಠ")
+
+                while (opcion_elegida != pregunta[4]) and vidas > 0:
+                    vidas -= 1
 
                     if vidas > 0:
                         print("Pero igual te quedan ", vidas, "vidas. Asi que podes volver a intentar con otra "
