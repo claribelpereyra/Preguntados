@@ -189,9 +189,67 @@ def eleccion_preguntas(categoria):
             pregunta = ["pregunta ciencia 2?", "opcion1", "opcion2", "opcion3", 1]
     elif categoria == "ARTE":
         if nro_preg == 0:
-            pregunta = ["pregunta arte 1?", "opcion1", "opcion2", "opcion3", 1]
+            pregunta = ["¿Quién es considerado el padre del tango?", "Carlos Gardel", "Astor Piazzolla", "Aníbal Troilo", "Carlos Di Sarli", 1]
         elif nro_preg == 1:
-            pregunta = ["pregunta arte 2?", "opcion1", "opcion2", "opcion3", 1]
+            pregunta = ["¿Cuál de estos artistas argentinos es conocido por sus pinturas surrealistas?", "Antonio Berni", "Xul Solar", "Benito Quinquela Martín", "Emilio Pettoruti", 2]
+        elif nro_preg == 2:
+            pregunta = ["¿Quién fue el arquitecto argentino que diseñó el Obelisco de Buenos Aires?", "Francisco Salamone", "Alejandro Bustillo", "César Pelli", "Alberto Prebisch", 4]
+        elif nro_preg == 3:
+            pregunta = ["¿Qué escultor argentino creó la obra 'El pensador'?", "Erminio Blotta", "Lola Mora", "Lucio Fontana", "Auguste Rodin", 1]
+        elif nro_preg == 4:
+            pregunta = ["¿En qué museo se encuentra expuesta la famosa pintura 'El Grito' de Edvard Munch?", "MALBA", "Museo Nacional de Bellas Artes", "Museo de Arte Moderno de Buenos Aires", "Museo de Arte Contemporáneo de Rosario", 2]
+        elif nro_preg == 5:   
+            pregunta = ["¿Qué escritor argentino escribió la novela 'Rayuela'?", "Jorge Luis Borges", "Julio Cortázar", "Adolfo Bioy Casares", "Ernesto Sabato", 2]   
+        elif nro_preg == 6:   
+            pregunta = ["¿Qué famoso muralista argentino pintó el fresco 'Ejercicio Plástico'?", "David Alfaro Siqueiros", "Diego Rivera", "José Clemente Orozco", "Antonio Berni", 4]   
+        elif nro_preg == 7:   
+            pregunta = ["¿Cuál de estos artistas argentinos es conocido por su obra 'La Catedral'?", "Antonio Berni", "Xul Solar", "Benito Quinquela Martín", "Emilio Pettoruti", 3]   
+        elif nro_preg == 8:   
+            pregunta = ["¿Qué famoso músico argentino es conocido por su obra 'Adiós Nonino'?", "Astor Piazzolla", "Carlos Gardel", "Aníbal Troilo", "Osvaldo Pugliese", 1]   
+        elif nro_preg == 9:
+            pregunta = ["¿Cuál es la danza tradicional argentina conocida por su origen en la provincia de La Rioja?", "Chacarera", "Zamba", "Cueca", "Gato", 4]
+        # nivel intermedio
+        elif nro_preg == 10:
+            pregunta = ["¿Qué reconocido arquitecto argentino diseñó el Teatro Colón de Buenos Aires?", "Alejandro Bustillo", "César Pelli", "Alberto Prebisch", "Francisco Salamone", 3]
+        elif nro_preg == 11:
+            pregunta = ["¿Cuál es el nombre del museo de arte contemporáneo ubicado en la Ciudad de Buenos Aires?", "MALBA", "Museo Nacional de Bellas Artes", "Museo de Arte Moderno de Buenos Aires", "Museo de Arte Contemporáneo de Rosario", 1]
+        elif nro_preg == 12:
+            pregunta = ["¿Qué pintor argentino es conocido por su obra 'Contra el quebracho'?", "Antonio Berni", "Xul Solar", "Benito Quinquela Martín", "Emilio Pettoruti", 1]
+        elif nro_preg == 13:
+            pregunta = ["¿Quién fue el primer director de la Orquesta Filarmónica de Buenos Aires?", "Astor Piazzolla", "Carlos Gardel", "Aníbal Troilo", "Alberto Ginastera", 4]
+        elif nro_preg == 14:
+            pregunta = ["¿Qué famoso escultor argentino es conocido por sus obras monumentales en hormigón armado?", "Erminio Blotta", "Lola Mora", "Lucio Fontana", "Pablo Curatella Manes", 4]
+        elif nro_preg == 15:
+            pregunta = ["¿Qué escritor argentino es conocido por su obra 'Sobre héroes y tumbas'?", "Jorge Luis Borges", "Julio Cortázar", "Adolfo Bioy Casares", "Ernesto Sabato", 4]
+        elif nro_preg == 16:
+            pregunta = ["¿Cuál de estos artistas argentinos es conocido por su obra 'El Jugador de Ajedrez'?", "Antonio Berni", "Xul Solar", "Benito Quinquela Martín", "Emilio Pettoruti", 2]
+        elif nro_preg == 17:
+            pregunta = ["¿Qué escultor argentino creó la obra 'Monumento a la Bandera' en Rosario?", "Erminio Blotta", "Lola Mora", "Lucio Fontana", "Pablo Curatella Manes", 2]   
+        elif nro_preg == 18:
+            pregunta = ["¿Qué famoso muralista argentino pintó el fresco 'La Tortura'?", "David Alfaro Siqueiros", "Diego Rivera", "José Clemente Orozco", "Antonio Berni", 1]
+        elif nro_preg == 19:
+            pregunta = ["¿Cuál de estos artistas argentinos es conocido por su obra 'Lavanderas'?", "Antonio Berni", "Xul Solar", "Benito Quinquela Martín", "Emilio Pettoruti", 3]
+    # nivel avanzado
+        elif nro_preg == 20:
+            pregunta = ["¿Qué reconocido pintor argentino es conocido por su obra 'La Furia'?", "Antonio Berni", "Xul Solar", "Benito Quinquela Martín", "Emilio Pettoruti", 1]
+        elif nro_preg == 21:
+            pregunta = ["¿Cuál de estos artistas argentinos es conocido por su obra 'Cantos Rodados'?", "Antonio Berni", "Xul Solar", "Benito Quinquela Martín", "Emilio Pettoruti", 2]
+        elif nro_preg == 22:
+            pregunta = ["¿Cuál de estos artistas argentinos es conocido por su obra 'La ventana'?", "Antonio Berni", "Xul Solar", "Benito Quinquela Martín", "Emilio Pettoruti", 3]
+        elif nro_preg == 23:
+            pregunta = ["¿Qué famoso pintor argentino es conocido por su obra 'El desfile'?", "Antonio Berni", "Xul Solar", "Benito Quinquela Martín", "Emilio Pettoruti", 4]
+        elif nro_preg == 24:
+            pregunta = ["¿Qué reconocido músico argentino es conocido por su obra 'Milonga del Ángel'?", "Astor Piazzolla", "Carlos Gardel", "Aníbal Troilo", "Osvaldo Pugliese", 1]
+        elif nro_preg == 25:
+            pregunta = ["¿Cuál de estos artistas argentinos es conocido por su obra 'Calle de Barracas'?", "Antonio Berni", "Xul Solar", "Benito Quinquela Martín", "Emilio Pettoruti", 2]
+        elif nro_preg == 26:
+            pregunta = ["¿Quién fue el escritor argentino ganador del Premio Nobel de Literatura en 2010?", "Jorge Luis Borges", "Julio Cortázar", "Adolfo Bioy Casares", "Mario Vargas Llosa", 4]
+        elif nro_preg == 27:
+            pregunta = ["¿Qué famoso pianista argentino es conocido por su interpretación de 'El Concierto de Aranjuez'?", "Astor Piazzolla", "Martha Argerich", "Raúl Di Blasio", "Osvaldo Pugliese", 2]
+        elif nro_preg == 28:
+            pregunta = ["¿Cuál de estos artistas argentinos es conocido por su obra 'El solterito'?", "Antonio Berni", "Xul Solar", "Benito Quinquela Martín", "Emilio Pettoruti", 3]
+        elif nro_preg == 29:
+            pregunta = ["¿Qué reconocido poeta argentino escribió 'El Aleph'?", "Jorge Luis Borges", "Julio Cortázar", "Adolfo Bioy Casares", "Ernesto Sabato", 1]
     elif categoria == "GEOGRAFIA":
         # basico
         if nro_preg == 0:
