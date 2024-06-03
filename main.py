@@ -22,7 +22,7 @@ def dificultad_seleccionada(eleccion_dificultad):
     elif eleccion_dificultad == "3":
         return "EXPERTO"
     else:
-        return None
+        return eleccion_dificultad
 
 def imprimir_dificultades(dificultad):
     for i in range(len(dificultad)):
@@ -31,8 +31,6 @@ def imprimir_dificultades(dificultad):
 
 def validarDificultad(eleccion):
     return eleccion in inputs_validosDificultad
-
-# FUNCIONES
 
 def eleccion_categoria(categoria_elegida):
     """ Devuelve la categoria correspondiente a la opción ingresada.
@@ -53,7 +51,6 @@ def eleccion_categoria(categoria_elegida):
         tematica = categoria_elegida
     return tematica
 
-
 def validar_input(dato_ingresado):
     """Valida que el input ingresado para las categorias este en el rango correcto de opciones disponibles.
     :param dato_ingresado: Str, valor ingresado por teclado del usuario.
@@ -71,13 +68,11 @@ def validar_input(dato_ingresado):
         i += 1
     return es_valido
 
-
 def imprimir_categorias():
     """ Muestra por pantalla las categorias disponibles que tiene el usuario para elegir. """
     print("Elegi alguna de las categorias disponibles o ingresa FIN para salir del juego: ")
     for i in range(len(categorias)):
         print(i + 1, " - ", categorias[i])
-
 
 def imprimir_pregunta(pregunta):
     """ Muestra por pantalla la pregunta y las opciones disponibles que tiene el usuario para elegir.
@@ -88,7 +83,6 @@ def imprimir_pregunta(pregunta):
     for i in range(len(pregunta) - 1):
         print(pregunta[i])
 
-
 def imprimir_resultado(vidas, tematicas, puntos):
     """ Muestra por pantalla el resultado del juego segun la cantidad disponible de categorias y vidas. """
     if vidas > 0 and len(tematicas) == 0:
@@ -98,7 +92,6 @@ def imprimir_resultado(vidas, tematicas, puntos):
         print("██║   ██║██╔══██║██║╚██╗██║██╔══██║╚════██║   ██║   ██╔══╝")
         print("╚██████╔╝██║  ██║██║ ╚████║██║  ██║███████║   ██║   ███████╗")
         print("╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚══════╝")
-
         print("Vos si que sos más argentino que #completar ahre")
 
         print("Sumaste en total: ", puntos, "puntos.")
@@ -115,58 +108,50 @@ def imprimir_resultado(vidas, tematicas, puntos):
     elif vidas == 0 and len(tematicas) > 0:
         print(r"PERDISTE y por eso ni un banner te hacemos ¯\_(ツ)_/¯ ")
 
-
 def eleccion_preguntas(categoria):
     """Según la categoria ingresada devuelve una pregunta elegida de manera random.
     :param categoria: Str, nombre de la categoria elegida.
     :return pregunta: List, lista con la pregunta, las opciones disponibles y la opcion correcta."""
 
     nro_preg = random.randint(0, 1)
-
     if categoria == 'HISTORIA':
         if nro_preg == 0:
             pregunta = ["pregunta historia 1?", "opcion1", "opcion2", "opcion3", 1]
         elif nro_preg == 1:
             pregunta = ["pregunta historia 2?", "opcion1", "opcion2", "opcion3", 1]
-
     elif categoria == "DEPORTE":
         if nro_preg == 0:
             pregunta = ["pregunta deporte 1?", "opcion1", "opcion2", "opcion3", 1]
         elif nro_preg == 1:
             pregunta = ["pregunta deporte 2?", "opcion1", "opcion2", "opcion3", 1]
-
     elif categoria == "CIENCIA":
         if nro_preg == 0:
             pregunta = ["pregunta ciencia 1?", "opcion1", "opcion2", "opcion3", 1]
         elif nro_preg == 1:
             pregunta = ["pregunta ciencia 2?", "opcion1", "opcion2", "opcion3", 1]
-
     elif categoria == "ARTE":
         if nro_preg == 0:
             pregunta = ["pregunta arte 1?", "opcion1", "opcion2", "opcion3", 1]
         elif nro_preg == 1:
             pregunta = ["pregunta arte 2?", "opcion1", "opcion2", "opcion3", 1]
-
     elif categoria == "GEOGRAFIA":
         if nro_preg == 0:
             pregunta = ["pregunta geografia 1?", "opcion1", "opcion2", "opcion3", 1]
         elif nro_preg == 1:
             pregunta = ["pregunta geografia 2 ?", "opcion1", "opcion2", "opcion3", 1]
-
     else:
         if nro_preg == 0:
             pregunta = ["pregunta entretenimiento 1 ?", "opcion1", "opcion2", "opcion3", 1]
         elif nro_preg == 1:
             pregunta = ["pregunta? entretenimiento 2 ?", "opcion1", "opcion2", "opcion3", 1]
-
     return pregunta
 
-
 def main():
-    """Función encargada de la ejecución del juego."""
+    """Función principal del juego."""
     puntos = 0
     vidas = 5
     tematica = ""
+    dificultad_seleccionada_valor = ""
 
     print(
         "██████╗ ██╗███████╗███╗   ██╗██╗   ██╗███████╗███╗   ██╗██╗██████╗  ██████╗      █████╗ ██╗          █████╗ ██████╗  ██████╗ ███████╗███╗   ██╗████████╗ █████╗ ██████╗  ██████╗ ███████╗    ██╗")
@@ -191,28 +176,24 @@ def main():
     input("Para continuar presiona cualquier tecla: ")
     print("")
 
-    while dificultad_seleccionada != "FIN":
-        print("Elegí la dificultad del juego")
-        imprimir_dificultades(dificultad)
-        print("")
-        dificultad_elegida = input("Ingresá la opcion elegida: ")
-        validacion = validarDificultad(dificultad_elegida)
+    print("Elegí la dificultad del juego")
+    imprimir_dificultades(dificultad)
+    print("")
+    eleccion = input("Ingresá la dificultad que deseas: ")
 
-        while not validacion:
-            print("Valor ingresado no valido. Por favor, intentá nuevamente")
-            print("")   
-            imprimir_dificultades(dificultad)
-            dificultad_elegida = input("Dale, elegí la dificultad del juego: ")
-            validacion = validarDificultad(dificultad_elegida)
+    while not validarDificultad(eleccion):
+        print("Valor ingresado no valido. Por favor, intentá nuevamente")
+        print("")   
+        eleccion = input("Dale, elegí la dificultad del juego: ")
 
-        if dificultad_seleccionada == "FIN":
+    if dificultad_seleccionada_valor == "FIN":
             print("Juego no inciiado. Saliste del juego, hasta la próxima!")
             dificultad_seleccionada = "FIN"  # Seteamos la dificultad_seleccionada a "FIN" para salir del bucle
-        else:
-            dificultad_seleccionada = dificultad_seleccionada(dificultad_elegida)
-            print("Dificultad elegida:", dificultad_seleccionada)
-        
-        while tematica != "FIN" and vidas > 0 and len(categorias) > 0:
+    else:
+        dificultad_seleccionada_valor = dificultad_seleccionada(eleccion)
+        print("Dificultad elegida:", dificultad_seleccionada_valor)
+ 
+    while tematica != "FIN" and vidas > 0 and len(categorias) > 0:
             imprimir_categorias()
             categoria_elegida = input("Ingrese la opcion elegida: ")
             validacion = validar_input(categoria_elegida)
@@ -241,17 +222,17 @@ def main():
                     while tematica != "FIN" and vidas > 0 and len(categorias) > 0:
 
                         imprimir_categorias()
-        categoria_elegida = input("Ingrese la opcion elegida: ")
-        validacion = validar_input(categoria_elegida)
-
-        while validacion is False:
-            print("Che, dale, elegime una opcion valida!")
             categoria_elegida = input("Ingrese la opcion elegida: ")
             validacion = validar_input(categoria_elegida)
 
-        tematica = eleccion_categoria(categoria_elegida)
-        if tematica != "FIN":
-            pregunta = eleccion_preguntas(tematica)
+            while validacion is False:
+                ("Che, dale, elegime una opcion valida!")
+                categoria_elegida = input("Ingrese la opcion elegida: ")
+                validacion = validar_input(categoria_elegida)
+
+            tematica = eleccion_categoria(categoria_elegida)
+            if tematica != "FIN":
+                pregunta = eleccion_preguntas(tematica)
 
             imprimir_pregunta(pregunta)
 
@@ -278,8 +259,8 @@ def main():
                             puntos += 5
                     else:
                         print("Te quedaste sin vidas, que mala leche!")
-        if len(categorias) == 0 and vidas == 0:
-            tematica = "FIN"
+            if len(categorias) == 0 and vidas == 0:
+                tematica = "FIN"
 
     imprimir_resultado(vidas, categorias, puntos)
 
