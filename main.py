@@ -112,7 +112,7 @@ def eleccion_preguntas(categoria, eleccion_dificultad):
     """Según la categoria ingresada devuelve una pregunta elegida de manera random.
     :param categoria: Str, nombre de la categoria elegida.
     :return pregunta: List, lista con la pregunta, las opciones disponibles y la opcion correcta."""
-
+    pregunta = []
     nro_preg = random.randint(0, 29)
     if categoria == 'HISTORIA':
         if eleccion_dificultad == "BÁSICO":
@@ -441,9 +441,9 @@ def main():
 
                     while (opcion_elegida != pregunta[4]) and vidas > 0:
                         vidas -= 1
-
+     
                     while tematica != "FIN" and vidas > 0 and len(categorias) > 0:
-
+                        print("Pero igual te quedan ", vidas, "vidas. Asi que podes volver a intentar con otra pregunta!")
                         imprimir_categorias()
             categoria_elegida = input("Ingrese la opcion elegida: ")
             validacion = validar_input(categoria_elegida)
