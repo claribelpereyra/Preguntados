@@ -136,9 +136,25 @@ def eleccion_preguntas(categoria, eleccion_dificultad):
     if categoria == 'HISTORIA':
         if eleccion_dificultad == "BÁSICO":
             if nro_preg == 0:
-                pregunta = ["pregunta historia 1?", "opcion1", "opcion2", "opcion3", 1]
+                pregunta = ["¿En qué ciudad se firmó la Declaración de Independencia de Argentina?", "Buenos Aires", "Cordoba", "Rosario", "Tucuman", 4]
+            elif nro_preg == 1:
+                pregunta = ["¿Qué importante evento se produjo en 1816 en Argentina?", "La revolución de mayo", "La Independencia", "La Batalla de Caseros", "La Constitución Nacional", 2]
+            elif nro_preg == 2:
+                pregunta = ["¿Qué prócer argentino está en el billete de 100 pesos?", "José de San Martín", "Manuel Belgrano", "Bartolomé Mitre", "Eva Perón", 4]
+            elif nro_preg == 3:
+                pregunta = ["¿En qué fecha se conmemora la Revolución de Mayo en Argentina?", "9 de julio", "25 de mayo", "Rosario", "Tucuman", 4]
+            elif nro_preg == 4:
+                pregunta = ["¿Quién fue el primer presidente argentino electo democráticamente en 1983 después de la dictadura militar?", "Buenos Aires", "Cordoba", "Rosario", "Tucuman", 4]
+            elif nro_preg == 5:
+                pregunta = ["¿Qué prócer argentino es conocido por crear la bandera?", "Buenos Aires", "Cordoba", "Rosario", "Tucuman", 4]
+            elif nro_preg == 6:
+                pregunta = ["¿Qué política social es más asociada al peronismo?", "Buenos Aires", "Cordoba", "Rosario", "Tucuman", 4]
+            elif nro_preg == 7:
+                pregunta = ["¿En qué año se concedió el derecho al voto a las mujeres en Argentina?", "Buenos Aires", "Cordoba", "Rosario", "Tucuman", 4]
+            elif nro_preg == 8:
+                pregunta = ["¿Qué institución fue uno de los principales centros clandestinos de detención durante la dictadura?", "Buenos Aires", "Cordoba", "Rosario", "Tucuman", 4]
             else:
-                pregunta = ["pregunta historia 2?", "opcion1", "opcion2", "opcion3", 1]
+                pregunta = ["¿Qué término se utilizó para referirse al colapso financiero y social que tuvo lugar en Argentina en 2001?", "opcion1", "opcion2", "opcion3", 1]
         elif eleccion_dificultad == "DIFICIL":
             if nro_preg == 0:
                 pregunta = ["pregunta historia 1?", "opcion1", "opcion2", "opcion3", 1]
