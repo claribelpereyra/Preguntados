@@ -1901,7 +1901,7 @@ def eleccion_preguntas(categoria, eleccion_dificultad):
                 ]
             else:
                 pregunta = [
-                    "¿En que año hizo su debut de conductor Guido kaczka?",
+                    "¿En que año hizo su debut como conductor Guido kaczka?",
                     "1999",
                     "1989",
                     "2000",
