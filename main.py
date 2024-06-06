@@ -85,10 +85,10 @@ def validar_dificultad(eleccion):
     """Valida que la dificultad seleccionada sea un input valido."""
     es_valido = False
     i = 0
-    # Mientras el input no sea valido y todavia queden elementos en la lista de inputs_validos_categorias para comparar,
+    # Mientras el input no sea valido y todavia queden elementos en la lista de inputs_validos_dificultad para comparar,
     # se comparara el dato ingresado con los valores esperados.
     while es_valido is False and i < len(inputs_validos_dificultad):
-        # Si el dato ingresado es igual a alguno de los datos que en la lista inputs_validos_categorias cambia el valor
+        # Si el dato ingresado es igual a alguno de los datos que en la lista inputs_validos_dificultad cambia el valor
         # de es_valido a True.
         if eleccion == inputs_validos_dificultad[i]:
             es_valido = True
@@ -101,10 +101,10 @@ def validar_respuestas(eleccion):
     """Chequea que la respuesta a la pregunta seleccionada sea un input valido."""
     es_valido = False
     i = 0
-    # Mientras el input no sea valido y todavia queden elementos en la lista de inputs_validos_categorias para comparar,
+    # Mientras el input no sea valido y todavia queden elementos en la lista de inputs_validos_preguntas para comparar,
     # se comparara el dato ingresado con los valores esperados.
     while es_valido is False and i < len(inputs_validos_preguntas):
-        # Si el dato ingresado es igual a alguno de los datos que en la lista inputs_validos_categorias cambia el valor
+        # Si el dato ingresado es igual a alguno de los datos que en la lista inputs_validos_preguntas cambia el valor
         # de es_valido a True.
         if eleccion == inputs_validos_preguntas[i]:
             es_valido = True
