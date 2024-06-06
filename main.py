@@ -68,21 +68,50 @@ def imprimir_resultado(vidas, tematicas, puntos):
 # FUNCIONES DE VALIDACION DE INPUTS
 def validar_dificultad(eleccion):
     """Valida que la dificultad seleccionada sea un input valido."""
-    dificultad_valida = eleccion in inputs_validos_dificultad
-    return dificultad_valida
+    es_valido = False
+    i = 0
+    # Mientras el input no sea valido y todavia queden elementos en la lista de inputs_validos_categorias para comparar,
+    # se comparara el dato ingresado con los valores esperados.
+    while es_valido is False and i < len(inputs_validos_dificultad):
+        # Si el dato ingresado es igual a alguno de los datos que en la lista inputs_validos_categorias cambia el valor
+        # de es_valido a True.
+        if eleccion == inputs_validos_dificultad[i]:
+            es_valido = True
+        i += 1
+
+    return es_valido
 
 
 def validar_respuestas(eleccion):
     """Chequea que la respuesta a la pregunta seleccionada sea un input valido."""
-    respuesta_valida = eleccion in inputs_validos_preguntas
-    return respuesta_valida
+    es_valido = False
+    i = 0
+    # Mientras el input no sea valido y todavia queden elementos en la lista de inputs_validos_categorias para comparar,
+    # se comparara el dato ingresado con los valores esperados.
+    while es_valido is False and i < len(inputs_validos_preguntas):
+        # Si el dato ingresado es igual a alguno de los datos que en la lista inputs_validos_categorias cambia el valor
+        # de es_valido a True.
+        if eleccion == inputs_validos_preguntas[i]:
+            es_valido = True
+        i += 1
+
+    return es_valido
 
 
 def validar_categoria(dato_ingresado):
     """Valida que el input ingresado para las categorias este en el rango correcto de opciones disponibles.
     :return es_valido: Bool, devuelve True si es un input valido o False en caso contrario."""
 
-    es_valido = dato_ingresado in inputs_validos_categorias
+    es_valido = False
+    i = 0
+    # Mientras el input no sea valido y todavia queden elementos en la lista de inputs_validos_categorias para comparar,
+    # se comparara el dato ingresado con los valores esperados.
+    while es_valido is False and i < len(inputs_validos_categorias):
+        # Si el dato ingresado es igual a alguno de los datos que en la lista inputs_validos_categorias cambia el valor
+        # de es_valido a True.
+        if dato_ingresado == inputs_validos_categorias[i]:
+            es_valido = True
+        i += 1
 
     return es_valido
 
@@ -136,9 +165,26 @@ def eleccion_preguntas(categoria, eleccion_dificultad):
     if categoria == 'HISTORIA':
         if eleccion_dificultad == "BÁSICO":
             if nro_preg == 0:
-                pregunta = ["pregunta historia 1?", "opcion1", "opcion2", "opcion3", 1]
+                pregunta = ["¿En qué ciudad se firmó la Declaración de Independencia de Argentina?", "Buenos Aires", "Cordoba", "Rosario", "Tucuman", 4]
+            elif nro_preg == 1:
+                pregunta = ["¿Qué importante evento se produjo en 1816 en Argentina?", "La revolución de mayo", "La Independencia", "La Batalla de Caseros", "La Constitución Nacional", 2]
+            elif nro_preg == 2:
+                pregunta = ["¿Qué prócer argentino está en el billete de 100 pesos?", "José de San Martín", "Manuel Belgrano", "Bartolomé Mitre", "Eva Perón", 4]
+            elif nro_preg == 3:
+                pregunta = ["¿En qué fecha se conmemora la Revolución de Mayo en Argentina?", "9 de julio", "25 de mayo", "20 de junio", "12 de octubre", 2]
+            elif nro_preg == 4:
+                pregunta = ["¿Quién fue el primer presidente argentino electo democráticamente en 1983 después de la dictadura militar?", "Juan Domingo Perón", "Carlos Menem", "Raúl Alfonsín", "Fernando de la Rúa", 4]
+            elif nro_preg == 5:
+                pregunta = ["¿Qué prócer argentino es conocido por crear la bandera?", "José de San Martín", "Manuel Belgrano", "Juan Manuel de Rosas", "Domingo Faustino Sarmiento", 2]
+            elif nro_preg == 6:
+                pregunta = ["¿Qué política social es más asociada al peronismo?", "Privatización de empresas pública", "Reforma agraria", "Justicia social y derechos laborales", "Liberalización del comercio", 3]
+            elif nro_preg == 7:
+                pregunta = ["¿En qué año se concedió el derecho al voto a las mujeres en Argentina?", "1946", "1947", "1949", "1951", 2]
+            elif nro_preg == 8:
+                pregunta = ["¿Qué institución fue uno de los principales centros clandestinos de detención durante la dictadura?", "ESMA (Escuela de Mecánica de la Armada)", "Casa Rosada", "Congreso de la Nación", "Teatro Colón", 1]
             else:
-                pregunta = ["pregunta historia 2?", "opcion1", "opcion2", "opcion3", 1]
+                pregunta = ["¿Qué término se utilizó para referirse al colapso financiero y social que tuvo lugar en Argentina en 2001?", "La Gran Depresión", "La Gran Recesión", "El Corralito", "La Inflación Galopante", 3]
+
         elif eleccion_dificultad == "DIFICIL":
             if nro_preg == 0:
                 pregunta = ["pregunta historia 1?", "opcion1", "opcion2", "opcion3", 1]
@@ -176,7 +222,7 @@ def eleccion_preguntas(categoria, eleccion_dificultad):
                             "Voleibol", 2]
             elif nro_preg == 8:
                 pregunta = ["¿Qué equipo argentino de fútbol es conocido como 'La Academia'?", "San Lorenzo",
-                            "Independiente", "Racing", "River Plate", 4]
+                            "Independiente", "Racing", "River Plate", 3]
             else:
                 pregunta = ["¿En qué deporte se destaca Lionel Messi?", "Fútbol", "Baloncesto", "Tenis", "Rugby", 1]
         # nivel intermedio
@@ -267,15 +313,21 @@ def eleccion_preguntas(categoria, eleccion_dificultad):
                             "Bernardo Houssay",
                             "Rene Favaloro", "Luis Federico Leloir", "Salvador Mazza", 2]
             else:
-                pregunta = ["pregunta ciencia 2?", "opcion1", "opcion2", "opcion3", 1]
+                pregunta = ["¿Cuál es el objetivo principal del Banco Nacional de Datos Genéticos?",
+                            "Conservar el ADN de los ciudadanos argentinos", "Facilitar la identificación de personas desaparecidas durante la dictadura militar",
+                            "Realizar estudios genéticos sobre enfermedades hereditarias", "Proveer datos genéticos para investigaciones científicas",2]
+
         elif eleccion_dificultad == "DIFICIL":
             if nro_preg == 0:
-                pregunta = ["pregunta ciencia 1?", "opcion1", "opcion2", "opcion3", 1]
+                pregunta = ["¿Qué técnica genética ha sido fundamental en la labor del BNDG para la identificación de nietos apropiados?",
+                            "Análisis de microsatélites (STR)", "Secuenciación de nueva generación (NGS)", "Electroforesis en gel",
+                            "Southern blot", 1]
             else:
-                pregunta = ["pregunta ciencia 2?", "opcion1", "opcion2", "opcion3", 1]
+                pregunta = ["¿Qué investigadora argentina en el campo de la biotecnología fue pionera en el desarrollo de bioproductos y es cofundadora de la empresa Bioceres?", "Silvia Gold", "Gabriela Aguirre", "Andrea Gamarnik", "Norma Sánchez", 1]
         else:
             if nro_preg == 0:
-                pregunta = ["pregunta ciencia 1?", "opcion1", "opcion2", "opcion3", 1]
+                pregunta = ["¿Qué físico argentino fue co-descubridor de los agujeros negros de masa intermedia y es conocido por su trabajo en el LIGO (Observatorio de Ondas Gravitacionales por Interferometría Láser)?", "Juan Martín Maldacena", "Mario Bunge", "Alberto Rojo", "Gabriela González", 4]
+
             else:
                 pregunta = ["pregunta ciencia 2?", "opcion1", "opcion2", "opcion3", 1]
     elif categoria == "ARTE":
@@ -380,125 +432,151 @@ def eleccion_preguntas(categoria, eleccion_dificultad):
                 pregunta = ["¿Qué reconocido poeta argentino escribió 'El Aleph'?", "Jorge Luis Borges",
                             "Julio Cortázar", "Adolfo Bioy Casares", "Ernesto Sabato", 1]
     elif categoria == "GEOGRAFIA":
-        # basico
-        if eleccion_dificultad == "BÁSICO":
-            if nro_preg == 0:
-                pregunta = ["¿Cuál es la montaña más alta de Argentina?", "Aconcagua", "Fitz Roy", "Cerro Torre",
-                            "Chapelco", 1]
-            elif nro_preg == 1:
-                pregunta = ["¿Cuál es el río más largo de Argentina?", "Correntoso", "Paraná", "Caleufú", "Paraguay", 2]
-            elif nro_preg == 2:
-                pregunta = ["¿Qué famoso glaciar se encuentra en el Parque Nacional Los Glaciares?", "No existe",
-                            "Glaciar Martial", "Glaciar Perito Moreno", "Glaciar Upsala", 3]
-            elif nro_preg == 3:
-                pregunta = ["¿En qué región de Argentina se encuentra la famosa Patagonia?", "Norte", "Centro", "Sur",
-                            "Oeste", 3]
-            elif nro_preg == 4:
-                pregunta = ["¿Cuál es la capital de Argentina?", "Neuquén", "Buenos Aires", "Córdoba", "Rosario", 2]
-            elif nro_preg == 5:
-                pregunta = ["¿Qué océano baña las costas de Argentina?", "Ártico", "Pacífico", "Índico", "Atlántico", 4]
-            elif nro_preg == 6:
-                pregunta = ["¿Cuál es el desierto más árido del mundo, que se encuentra en Argentina?", "No hay",
-                            "Kalahari", "Desierto del Monte", "Atacama", 1]
-            elif nro_preg == 7:
-                pregunta = ["¿En qué región de Argentina se encuentra la famosa región vinícola de Mendoza?", "Oeste",
-                            "Noroeste", "Cuyo", "Patagonia", 2]
-            elif nro_preg == 8:
-                pregunta = ["¿Cuál es el nombre de las famosas cataratas en la provincia de Misiones?",
-                            "Garganta del Diablo", "Cataratas del Iguazú", "Cataratas del Salto",
-                            "Cataratas del Paraná", 2]
+            # basico
+            if eleccion_dificultad == "BÁSICO":
+                if nro_preg == 0:
+                    pregunta = ["¿Cuál es la montaña más alta de Argentina?", "Aconcagua", "Fitz Roy", "Cerro Torre",
+                                "Chapelco", 1]
+                elif nro_preg == 1:
+                    pregunta = ["¿Cuál es el río más largo de Argentina?", "Correntoso", "Paraná", "Caleufú", "Paraguay", 2]
+                elif nro_preg == 2:
+                    pregunta = ["¿Qué famoso glaciar se encuentra en el Parque Nacional Los Glaciares?", "No existe",
+                                "Glaciar Martial", "Glaciar Perito Moreno", "Glaciar Upsala", 3]
+                elif nro_preg == 3:
+                    pregunta = ["¿En qué región de Argentina se encuentra la famosa Patagonia?", "Norte", "Centro", "Sur",
+                                "Oeste", 3]
+                elif nro_preg == 4:
+                    pregunta = ["¿Cuál es la capital de Argentina?", "Neuquén", "Buenos Aires", "Córdoba", "Rosario", 2]
+                elif nro_preg == 5:
+                    pregunta = ["¿Qué océano baña las costas de Argentina?", "Ártico", "Pacífico", "Índico", "Atlántico", 4]
+                elif nro_preg == 6:
+                    pregunta = ["¿Cuál es el apodo de Salta?", "La Bella",
+                                "La Grande", "La Linda", "La Colorida", 1]
+                elif nro_preg == 7:
+                    pregunta = ["¿En qué región de Argentina se encuentra la famosa región vinícola de Mendoza?", "Oeste",
+                                "Noroeste", "Cuyo", "Patagonia", 2]
+                elif nro_preg == 8:
+                    pregunta = ["¿Cuál es el nombre de las famosas cataratas en la provincia de Misiones?",
+                                "Garganta del Diablo", "Cataratas del Iguazú", "Cataratas del Salto",
+                                "Cataratas del Paraná", 2]
+                else:
+                    pregunta = ["¿Qué famosa formación rocosa se encuentra en la provincia de Salta?", "Cerro Chaltén",
+                                "Cerro de los Siete Colores", "Cerro Catedral", "Cerro Colorido", 2]
+            # dificil
+            elif eleccion_dificultad == "DIFICIL":
+                if nro_preg == 0:
+                    pregunta = ["¿Cuál de las siguientes provincias argentinas no tiene costa?", "Buenos Aires", "Santa Fe",
+                                "Mendoza", "Misiones", 3]
+                elif nro_preg == 1:
+                    pregunta = ["¿En qué provincia se encuentra el Cerro Aconcagua?", "Mendoza", "Neuquén", "Santa Cruz",
+                                "Río Negro", 1]
+                elif nro_preg == 2:
+                    pregunta = ["¿Cuál de estos lagos no se encuentra en la provincia de Neuquén?", "Lago Nahuel Huapi",
+                                "Lago Argentino", "Lago Traful", "Lago Hermoso", 2]
+                elif nro_preg == 3:
+                    pregunta = [
+                        "¿Cuál es el nombre de la península ubicada en la provincia de Chubut, famosa por avistamiento de ballenas?",
+                        "Península Valdés", "Península Mitre", "Península San José", "Península Ballenas", 1]
+                elif nro_preg == 4:
+                    pregunta = ["¿Cuál es el nombre de la región montañosa ubicada en la provincia de San Juan?",
+                                "Cordillera de los Andes", "Cordillera de los Vientos", "Cordillera de la Costa",
+                                "Cordilleta de los Alcones", 2]
+                elif nro_preg == 5:
+                    pregunta = ["¿Cuál de las siguientes provincias limita con Bolivia?", "Jujuy", "Salta", "Corrientes",
+                                "La Pampa", 2]
+                elif nro_preg == 6:
+                    pregunta = [
+                        "¿Qué famosa formación natural se encuentra en la provincia de La Rioja y es un importante destino turístico?",
+                        "Valle de la Luna", "Quebrada de Humahuaca", "Cueva de las Manos", "Cueva de las aves", 1]
+                elif nro_preg == 7:
+                    pregunta = ["¿Qué provincia argentina se caracteriza por tener una importante producción de petróleo?",
+                                "Neuquén", "Córdoba", "Entre Ríos", "Santiago del Estero", 1]
+                elif nro_preg == 8:
+                    pregunta = ["¿Cuál es el nombre del pico más alto de la provincia de Tierra del Fuego?",
+                                "Cerro Fitz Roy", "Cerro Torre", "Monte Olivia", "Monte Tronador", 3]
+                else:
+                    pregunta = ["¿Qué río forma parte de la frontera entre Argentina y Uruguay?", "Río Paraná",
+                                "Río Uruguay", "Río Iguazú", "Rió Salado", 2]
+            # avanzado
             else:
-                pregunta = ["¿Qué famosa formación rocosa se encuentra en la provincia de Salta?", "Cerro Chaltén",
-                            "Cerro de los Siete Colores", "Cerro Catedral", "Cerro Colorido", 2]
-        # dificil
-        elif eleccion_dificultad == "DIFICIL":
-            if nro_preg == 0:
-                pregunta = ["¿Cuál de las siguientes provincias argentinas no tiene costa?", "Buenos Aires", "Santa Fe",
-                            "Mendoza", "Misiones", 3]
-            elif nro_preg == 1:
-                pregunta = ["¿En qué provincia se encuentra el Cerro Aconcagua?", "Mendoza", "Neuquén", "Santa Cruz",
-                            "Río Negro", 1]
-            elif nro_preg == 2:
-                pregunta = ["¿Cuál de estos lagos no se encuentra en la provincia de Neuquén?", "Lago Nahuel Huapi",
-                            "Lago Argentino", "Lago Traful", "Lago Hermoso", 2]
-            elif nro_preg == 3:
-                pregunta = [
-                    "¿Cuál es el nombre de la península ubicada en la provincia de Chubut, famosa por avistamiento de ballenas?",
-                    "Península Valdés", "Península Mitre", "Península San José", "Península Ballenas", 1]
-            elif nro_preg == 4:
-                pregunta = ["¿Cuál es el nombre de la región montañosa ubicada en la provincia de San Juan?",
-                            "Cordillera de los Andes", "Cordillera de los Vientos", "Cordillera de la Costa",
-                            "Cordilleta de los Alcones", 2]
-            elif nro_preg == 5:
-                pregunta = ["¿Cuál de las siguientes provincias limita con Bolivia?", "Jujuy", "Salta", "Corrientes",
-                            "La Pampa", 2]
-            elif nro_preg == 6:
-                pregunta = [
-                    "¿Qué famosa formación natural se encuentra en la provincia de La Rioja y es un importante destino turístico?",
-                    "Valle de la Luna", "Quebrada de Humahuaca", "Cueva de las Manos", "Cueva de las aves", 1]
-            elif nro_preg == 7:
-                pregunta = ["¿Qué provincia argentina se caracteriza por tener una importante producción de petróleo?",
-                            "Neuquén", "Córdoba", "Entre Ríos", "Santiago del Estero", 1]
-            elif nro_preg == 8:
-                pregunta = ["¿Cuál es el nombre del pico más alto de la provincia de Tierra del Fuego?",
-                            "Cerro Fitz Roy", "Cerro Torre", "Monte Olivia", "Monte Tronador", 3]
-            else:
-                pregunta = ["¿Qué río forma parte de la frontera entre Argentina y Uruguay?", "Río Paraná",
-                            "Río Uruguay", "Río Iguazú", "Rió Salado", 2]
-        # avanzado
-        else:
-            if nro_preg == 0:
-                pregunta = ["¿Cuál es el nombre de la región semiárida ubicada en la provincia de Buenos Aires?",
-                            "Pampa Húmeda", "Chaco Austral", "Monte", "Pampa Seca", 3]
-            elif nro_preg == 1:
-                pregunta = ["¿Qué provincia argentina es conocida por su producción de vino Malbec?", "Mendoza",
-                            "San Juan", "La Rioja", "Salta", 1]
-            elif nro_preg == 2:
-                pregunta = ["¿Cuál es el nombre del volcán más alto de Argentina?", "Lanín", "Copahue",
-                            "Ojos del Salado", "Tronador", 3]
-            elif nro_preg == 3:
-                pregunta = [
-                    "¿Qué parque nacional argentino es conocido por ser el hogar de una gran variedad de especies de aves?",
-                    "Parque Nacional Los Glaciares", "Parque Nacional Nahuel Huapi", "Parque Nacional Iguazú",
-                    "Parque Nacional El Palmar", 2]
-            elif nro_preg == 4:
-                pregunta = ["¿Cuál de las siguientes provincias no tiene frontera con Chile?", "Neuquén", "Mendoza",
-                            "Chaco", "Formosa", 3]
-            elif nro_preg == 5:
-                pregunta = ["¿Qué provincia argentina es famosa por su producción de yerba mate?", "Corrientes",
-                            "Misiones", "Formosa", "Entre Ríos", 2]
-            elif nro_preg == 6:
-                pregunta = ["¿Cuál es el nombre del río más ancho de Argentina?", "Río Paraná", "Río de la Plata",
-                            "Río Uruguay", "Río Colorado", 2]
-            elif nro_preg == 7:
-                pregunta = ["¿Qué provincia argentina es famosa por sus formaciones geológicas y cañones multicolores?",
-                            "Jujuy", "La Rioja", "San Juan", "Salta", 1]
-            elif nro_preg == 8:
-                pregunta = ["¿Qué cordillera atraviesa la provincia de Mendoza?", "Cordillera de los Andes",
-                            "Cordillera de la Costa", "Cordillera de los Vientos", "Cordillera del Tigre", 1]
-            else:
-                pregunta = ["¿Qué provincia argentina limita con Paraguay y Brasil?", "Buenos Aires", "Entre Ríos",
-                            "Formosa", "Corrientes", 4]
+                if nro_preg == 0:
+                    pregunta = ["¿Cuál es el nombre de la región semiárida ubicada en la provincia de Buenos Aires?",
+                                "Pampa Húmeda", "Chaco Austral", "Monte", "Pampa Seca", 3]
+                elif nro_preg == 1:
+                    pregunta = ["¿Qué provincia argentina es conocida por su producción de vino Malbec?", "Mendoza",
+                                "San Juan", "La Rioja", "Salta", 1]
+                elif nro_preg == 2:
+                    pregunta = ["¿Cuál es el nombre del volcán más alto de Argentina?", "Lanín", "Copahue",
+                                "Ojos del Salado", "Tronador", 3]
+                elif nro_preg == 3:
+                    pregunta = [
+                        "¿Qué parque nacional argentino es conocido por ser el hogar de una gran variedad de especies de aves?",
+                        "Parque Nacional Los Glaciares", "Parque Nacional Nahuel Huapi", "Parque Nacional Iguazú",
+                        "Parque Nacional El Palmar", 2]
+                elif nro_preg == 4:
+                    pregunta = ["¿Cuál de las siguientes provincias no tiene frontera con Chile?", "Neuquén", "Mendoza",
+                                "Chaco", "Formosa", 3]
+                elif nro_preg == 5:
+                    pregunta = ["¿Qué provincia argentina es famosa por su producción de yerba mate?", "Corrientes",
+                                "Misiones", "Formosa", "Entre Ríos", 2]
+                elif nro_preg == 6:
+                    pregunta = ["¿Cuál es el nombre del río más ancho de Argentina?", "Río Paraná", "Río de la Plata",
+                                "Río Uruguay", "Río Colorado", 2]
+                elif nro_preg == 7:
+                    pregunta = ["¿Qué provincia argentina es famosa por sus formaciones geológicas y cañones multicolores?",
+                                "Jujuy", "La Rioja", "San Juan", "Salta", 1]
+                elif nro_preg == 8:
+                    pregunta = ["¿Qué cordillera atraviesa la provincia de Mendoza?", "Cordillera de los Andes",
+                                "Cordillera de la Costa", "Cordillera de los Vientos", "Cordillera del Tigre", 1]
+                else:
+                    pregunta = ["¿Qué provincia argentina limita con Paraguay y Brasil?", "Buenos Aires", "Entre Ríos",
+                                "Formosa", "Corrientes", 4]
     else:
-        # entretenimiento
-        # nivel basico
-        if eleccion_dificultad == "BÁSICO":
-            if nro_preg == 0:
-                pregunta = ["pregunta entretenimiento 1 ?", "opcion1", "opcion2", "opcion3", 1]
+            # entretenimiento
+            # nivel basico
+            if eleccion_dificultad == "BÁSICO":
+                if nro_preg == 0:
+                    pregunta = ["¿En qué ciudad argentina nació la pintora y escultora Marta Minujín?", "Buenos Aires", "Córdoba", "Rosario", "Mendoza", 1]
+                elif nro_preg == 1:
+                    pregunta = ["¿En qué barrio de Buenos Aires se encuentra el Museo de Arte Moderno de Buenos Aires (MAMBA)?", "San Telmo", "Recoleta", "Palermo", "La Boca", 0]
+                elif nro_preg == 2:
+                    pregunta = ["¿Cuál es el nombre del popular festival de música que se realiza en Córdoba, conocido por su diversidad de géneros y artistas?", "Cosquín Rock", "Quilmes Rock", "Lollapalooza Argentina", "Personal Fest", 0]
+                elif nro_preg == 3:
+                    pregunta = [
+                        "¿Qué parque nacional argentino es conocido por ser el hogar de una gran variedad de especies de aves?",
+                        "Parque Nacional Los Glaciares", "Parque Nacional Nahuel Huapi", "Parque Nacional Iguazú",
+                        "Parque Nacional El Palmar", 2]
+                elif nro_preg == 4:
+                    pregunta = ["¿Cuál de las siguientes provincias no tiene frontera con Chile?", "Neuquén", "Mendoza",
+                                "Chaco", "Formosa", 3]
+                elif nro_preg == 5:
+                    pregunta = ["¿Qué provincia argentina es famosa por su producción de yerba mate?", "Corrientes",
+                                "Misiones", "Formosa", "Entre Ríos", 2]
+                elif nro_preg == 6:
+                    pregunta = ["¿Cuál es el nombre del río más ancho de Argentina?", "Río Paraná", "Río de la Plata",
+                                "Río Uruguay", "Río Colorado", 2]
+                elif nro_preg == 7:
+                    pregunta = [
+                        "¿Qué provincia argentina es famosa por sus formaciones geológicas y cañones multicolores?",
+                        "Jujuy", "La Rioja", "San Juan", "Salta", 1]
+                elif nro_preg == 8:
+                    pregunta = ["¿Qué cordillera atraviesa la provincia de Mendoza?", "Cordillera de los Andes",
+                                "Cordillera de la Costa", "Cordillera de los Vientos", "Cordillera del Tigre", 1]
+                else:
+                    pregunta = ["¿Qué provincia argentina limita con Paraguay y Brasil?", "Buenos Aires", "Entre Ríos",
+                                "Formosa", "Corrientes", 4]
+            # nivel dificil
+            elif eleccion_dificultad == "DIFICL":
+                if nro_preg == 0:
+                    pregunta = ["pregunta entretenimiento 1 ?", "opcion1", "opcion2", "opcion3", 1]
+                else:
+                    pregunta = ["pregunta? entretenimiento 2 ?", "opcion1", "opcion2", "opcion3", 1]
+            # nivel experto
             else:
-                pregunta = ["pregunta? entretenimiento 2 ?", "opcion1", "opcion2", "opcion3", 1]
-        # nivel dificil
-        elif eleccion_dificultad == "DIFICL":
-            if nro_preg == 0:
-                pregunta = ["pregunta entretenimiento 1 ?", "opcion1", "opcion2", "opcion3", 1]
-            else:
-                pregunta = ["pregunta? entretenimiento 2 ?", "opcion1", "opcion2", "opcion3", 1]
-        # nivel experto
-        else:
-            if nro_preg == 0:
-                pregunta = ["pregunta entretenimiento 1 ?", "opcion1", "opcion2", "opcion3", 1]
-            else:
-                pregunta = ["pregunta? entretenimiento 2 ?", "opcion1", "opcion2", "opcion3", 1]
+                if nro_preg == 0:
+                    pregunta = ["pregunta entretenimiento 1 ?", "opcion1", "opcion2", "opcion3", 1]
+                else:
+                    pregunta = ["pregunta? entretenimiento 2 ?", "opcion1", "opcion2", "opcion3", 1]
     return pregunta
 
 
